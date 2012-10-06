@@ -1,0 +1,423 @@
+#ifndef __SETUP_H__
+#define __SETUP_H__
+
+
+
+
+
+#ifndef UNIX_V
+#define UNIX_V  0
+#endif
+
+#ifndef UNIX_7
+#define UNIX_7  0
+#endif
+
+#ifndef LINUX
+#define LINUX   0
+#endif
+
+#ifndef DARWIN
+#define DARWIN  1
+#endif
+
+#ifndef MAC_XCD
+#define MAC_XCD 0
+#endif
+
+#ifndef MAC_MCW
+#define MAC_MCW 0
+#endif
+
+#ifndef WIN_MVC
+#define WIN_MVC 0
+#endif
+
+#ifndef WIN_BTC
+#define WIN_BTC 0
+#endif
+
+#ifndef WIN_MCW
+#define WIN_MCW 0
+#endif
+
+#ifndef WIN_GCC
+#define WIN_GCC 0
+#endif
+
+
+
+#ifndef VAX_VMS
+#define VAX_VMS 0
+#endif
+
+
+
+#ifndef GENERIC
+#if (!UNIX_V) && (!LINUX) && (!UNIX_7) && \
+    (!MAC_XCD) && (!MAC_MCW) && (!DARWIN) && \
+    (!WIN_MVC) && (!WIN_BTC) && (!WIN_MCW) && (!WIN_GCC) && \
+    (!VAX_VMS)
+#define GENERIC 1
+#else
+#define GENERIC 0
+#endif
+#endif
+
+#if WIN_MVC || WIN_BTC || WIN_MCW
+#define IBM 1
+#else
+#define IBM 0
+#endif
+
+
+
+#define VOID_ARG void
+#define STD_SIZE size_t
+
+#define BOOL int
+#define globle
+
+
+
+#ifndef RUN_TIME
+#define RUN_TIME 0
+#endif
+
+
+
+#ifndef DEFRULE_CONSTRUCT
+#define DEFRULE_CONSTRUCT 0
+#endif
+
+
+
+#ifndef DEFMODULE_CONSTRUCT
+#define DEFMODULE_CONSTRUCT 0
+#endif
+
+
+
+#ifndef DEFTEMPLATE_CONSTRUCT
+#define DEFTEMPLATE_CONSTRUCT 0
+#endif
+
+#if !DEFRULE_CONSTRUCT
+#undef DEFTEMPLATE_CONSTRUCT
+#define DEFTEMPLATE_CONSTRUCT 0
+#endif
+
+
+
+#ifndef FACT_SET_QUERIES
+#define FACT_SET_QUERIES 0
+#endif
+
+#if !DEFTEMPLATE_CONSTRUCT
+#undef FACT_SET_QUERIES
+#define FACT_SET_QUERIES        0
+#endif
+
+
+
+#ifndef DEFFACT_CONSTRUCT
+#define DEFFACTS_CONSTRUCT 0
+#endif
+
+#if !DEFTEMPLATE_CONSTRUCT
+#undef DEFFACTS_CONSTRUCT
+#define DEFFACTS_CONSTRUCT 0
+#endif
+
+
+
+#ifndef DEFGLOBAL_CONSTRUCT
+#define DEFGLOBAL_CONSTRUCT 0
+#endif
+
+
+
+#ifndef DEFFUNCTION_CONSTRUCT
+#define DEFFUNCTION_CONSTRUCT 0
+#endif
+
+
+
+#ifndef DEFGENERIC_CONSTRUCT
+#define DEFGENERIC_CONSTRUCT 0
+#endif
+
+
+
+#ifndef OBJECT_SYSTEM
+#define OBJECT_SYSTEM 0
+#endif
+
+
+
+#ifndef DEFINSTANCES_CONSTRUCT
+#define DEFINSTANCES_CONSTRUCT      0
+#endif
+
+#if !OBJECT_SYSTEM
+#undef DEFINSTANCES_CONSTRUCT
+#define DEFINSTANCES_CONSTRUCT      0
+#endif
+
+
+
+#ifndef INSTANCE_SET_QUERIES
+#define INSTANCE_SET_QUERIES 0
+#endif
+
+#if !OBJECT_SYSTEM
+#undef INSTANCE_SET_QUERIES
+#define INSTANCE_SET_QUERIES        0
+#endif
+
+
+
+#if (!DEFTEMPLATE_CONSTRUCT) && (!OBJECT_SYSTEM)
+#undef DEFRULE_CONSTRUCT
+#define DEFRULE_CONSTRUCT 0
+#endif
+
+
+
+#ifndef BLOAD_INSTANCES
+#define BLOAD_INSTANCES 0
+#endif
+#ifndef BSAVE_INSTANCES
+#define BSAVE_INSTANCES 0
+#endif
+
+#if !OBJECT_SYSTEM
+#undef BLOAD_INSTANCES
+#undef BSAVE_INSTANCES
+#define BLOAD_INSTANCES             0
+#define BSAVE_INSTANCES             0
+#endif
+
+
+
+#ifndef EXTENDED_MATH_FUNCTIONS
+#define EXTENDED_MATH_FUNCTIONS 0
+#endif
+
+
+
+#ifndef TEXTPRO_FUNCTIONS
+#define TEXTPRO_FUNCTIONS 0
+#endif
+
+
+
+#ifndef HELP_FUNCTIONS
+#define HELP_FUNCTIONS 0
+#endif
+
+#if HELP_FUNCTIONS
+#define HELP_DEFAULT "broccoli.hlp"
+#endif
+
+
+
+#ifndef BLOAD_ONLY
+#define BLOAD_ONLY 0
+#endif
+#ifndef BLOAD
+#define BLOAD 0
+#endif
+#ifndef BLOAD_AND_BSAVE
+#define BLOAD_AND_BSAVE 0
+#endif
+
+#if RUN_TIME
+#undef BLOAD_ONLY
+#define BLOAD_ONLY      0
+#undef BLOAD
+#define BLOAD           0
+#undef BLOAD_AND_BSAVE
+#define BLOAD_AND_BSAVE 0
+#endif
+
+
+
+#ifndef EMACS_EDITOR
+#define  EMACS_EDITOR 0
+#endif
+
+#if GENERIC || MAC_XCD || MAC_MCW || WIN_MCW || WIN_BTC || WIN_MVC
+#undef EMACS_EDITOR
+#define  EMACS_EDITOR  0
+#endif
+
+
+
+#ifndef CONSTRUCT_COMPILER
+#define  CONSTRUCT_COMPILER 0
+#endif
+
+#if CONSTRUCT_COMPILER
+#define API_HEADER "broccoli.h"
+#endif
+
+
+
+#ifndef IO_FUNCTIONS
+#define IO_FUNCTIONS 1
+#endif
+
+
+
+#ifndef STRING_FUNCTIONS
+#define STRING_FUNCTIONS 1
+#endif
+
+
+
+#ifndef PROVIDING_LISTS
+#define PROVIDING_LISTS 1
+#endif
+
+
+
+#ifndef DEBUGGING_FUNCTIONS
+#define DEBUGGING_FUNCTIONS 0
+#endif
+
+
+
+#ifndef PROFILING_FUNCTIONS
+#define PROFILING_FUNCTIONS 0
+#endif
+
+
+
+#ifndef BLOCK_MEMORY
+#define BLOCK_MEMORY 0
+#endif
+
+#if BLOCK_MEMORY
+
+#define INITBLOCKSIZE 32000
+#define BLOCKSIZE     32000
+
+#endif
+
+
+
+#ifndef WINDOW_INTERFACE
+#define WINDOW_INTERFACE 0
+#endif
+
+#if WINDOW_INTERFACE
+#undef EMACS_EDITOR
+#define  EMACS_EDITOR  0
+#endif
+
+
+
+#ifndef ALLOW_ENVIRONMENT_GLOBALS
+#define ALLOW_ENVIRONMENT_GLOBALS 0
+#endif
+
+#if !ALLOW_ENVIRONMENT_GLOBALS
+#undef EMACS_EDITOR
+#define  EMACS_EDITOR  0
+#endif
+
+
+
+#ifndef MOP
+#define MOP 0
+#endif
+
+#if MOP
+#include <assert.h>
+#define Bogus(x) assert(!(x))
+#else
+#define Bogus(x)
+#endif
+
+
+#include "core_environment.h"
+
+
+#ifndef %%LANGUAGE%%
+#define %%LANGUAGE%% 1
+#endif
+
+#ifdef PRE_IX
+#undef DEFFUNCTION_CONSTRUCT
+#undef DEFGENERIC_CONSTRUCT
+
+#define DEFFUNCTION_CONSTRUCT 1
+#define DEFGENERIC_CONSTRUCT 0
+
+#undef DEBUGGING_FUNCTIONS
+#define DEBUGGING_FUNCTIONS 1
+
+#undef DEFMODULE_CONSTRUCT
+#define DEFMODULE_CONSTRUCT 1
+
+#if GENERIC || MAC_XCD || MAC_MCW || WIN_MCW || WIN_BTC || WIN_MVC
+#undef EMACS_EDITOR
+#define  EMACS_EDITOR  0
+#else
+#undef EMACS_EDITOR
+#define  EMACS_EDITOR  1
+#endif
+
+#else
+#define PRE_IX 0
+#endif
+
+#ifdef IX
+#undef MOP
+#define MOP 1
+
+#undef DEBUGGING_FUNCTIONS
+#define DEBUGGING_FUNCTIONS 1
+
+#undef DEFFUNCTION_CONSTRUCT
+#undef DEFGENERIC_CONSTRUCT
+#undef EXTENDED_MATH_FUNCTIONS
+
+#define DEFFUNCTION_CONSTRUCT 1
+#define DEFGENERIC_CONSTRUCT 1
+#define EXTENDED_MATH_FUNCTIONS 1
+
+#undef DEFRULE_CONSTRUCT
+#undef DEFTEMPLATE_CONSTRUCT
+#undef FACT_SET_QUERIES
+#undef DEFFACTS_CONSTRUCT
+#undef DEFMODULE_CONSTRUCT
+
+#define DEFRULE_CONSTRUCT 1
+#define DEFTEMPLATE_CONSTRUCT 1
+#define DEFMODULE_CONSTRUCT 1
+#define FACT_SET_QUERIES 1
+#define DEFFACTS_CONSTRUCT 1
+
+#undef OBJECT_SYSTEM
+#undef DEFINSTANCES_CONSTRUCT
+#undef INSTANCE_SET_QUERIES
+
+#define OBJECT_SYSTEM 1
+#define DEFINSTANCES_CONSTRUCT      1
+#define INSTANCE_SET_QUERIES 1
+
+#undef   EMACS_EDITOR
+#define  EMACS_EDITOR 1
+
+#undef PROFILING_FUNCTIONS
+#define PROFILING_FUNCTIONS 1
+
+#else
+#define IX 0
+#endif
+
+#include "ext_setup.h"
+
+#endif
