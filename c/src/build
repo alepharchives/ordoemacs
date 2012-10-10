@@ -9,7 +9,7 @@ LOGFILEA=
 MAINTYPE=me
 METYPE=
 MEDEBUG=
-MAKEBAS="makefiles"
+MAKEBAS=makefiles
 MAKEFILE=
 MAKECDEFS=
 X11_MAKEINC=/usr/include
@@ -194,6 +194,7 @@ if [ -z "$MAKEFILE" ] ; then
     fi
     if [ -z "$MAKEFILE" ] ; then
         echo "Error: Failed to find a compiler (cc or gcc) fix PATH or use -m option"
+	echo "Got instead $MAKEBAS on $PLATFORM"
         exit 1
     fi
 fi
