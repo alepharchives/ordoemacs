@@ -153,30 +153,30 @@ install: me
 	@echo "install done"
 
 clean:
-	$(RM) core me mec mew mecw ne nec new necw med medc medw medcw ned nedc nedw nedcw
+	$(RM) core me ordoemacs mew ordoemacsw ne nec new necw med medc medw medcw ned nedc nedw nedcw
 	$(RM) *.oc *.ow *.ob *.on *.ov *.oe
 	$(RM) *.odc *.odw *.odb *.odn *.odv *.ode
 
 spotless: clean
 	$(RM) tags *~
 
-mec:	$(OBJ_C)
-	$(RM) $@
-	$(LD) $(LDFLAGS) $(LDOPTIMISE) -o $@ $(OBJ_C) $(CONSOLE_LIBS) $(LIBS)
-	$(STRIP) $@
+ordoemacs: $(OBJ_C)
+	   $(RM) $@
+	   $(LD) $(LDFLAGS) $(LDOPTIMISE) -o $@ $(OBJ_C) $(CONSOLE_LIBS) $(LIBS)
+	   $(STRIP) $@
 
 mew:	$(OBJ_W)
 	$(RM) $@
 	$(LD) $(LDFLAGS) $(LDOPTIMISE) -o $@ $(OBJ_W) $(WINDOW_LIBS) $(LIBS)
 	$(STRIP) $@
 
-mecw:	$(OBJ_B)
-	$(RM) $@
-	$(LD) $(LDFLAGS) $(LDOPTIMISE) -o $@ $(OBJ_B) $(CONSOLE_LIBS) $(WINDOW_LIBS) $(LIBS)
-	$(STRIP) $@
+ordoemacsw: $(OBJ_B)
+	    $(RM) $@
+	    $(LD) $(LDFLAGS) $(LDOPTIMISE) -o $@ $(OBJ_B) $(CONSOLE_LIBS) $(WINDOW_LIBS) $(LIBS)
+	    $(STRIP) $@
 
-me:	mecw
-	$(CP) mecw $@
+me:	ordoemacsw
+	$(CP) ordoemacsw $@
 
 nec:	$(OBJ_N)
 	$(RM) $@

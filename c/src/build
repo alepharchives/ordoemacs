@@ -6,7 +6,7 @@
 OPTIONS=
 LOGFILE=
 LOGFILEA=
-MAINTYPE=me
+MAINTYPE=ordoemacs
 METYPE=
 MEDEBUG=
 MAKEBAS=makefiles
@@ -211,7 +211,7 @@ if [ -z "$OPTIONS" ] ; then
         else
             echo "No X-11 support found, forcing terminal only."
             X11_INCLUDE=
-            METYPE=c
+            METYPE=
         fi
     fi
     OPTIONS="$MAINTYPE$MEDEBUG$METYPE"
